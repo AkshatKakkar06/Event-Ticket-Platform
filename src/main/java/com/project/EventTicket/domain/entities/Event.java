@@ -1,5 +1,6 @@
 package com.project.EventTicket.domain.entities;
 
+import com.project.EventTicket.domain.enums.EventStatusEnum;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;

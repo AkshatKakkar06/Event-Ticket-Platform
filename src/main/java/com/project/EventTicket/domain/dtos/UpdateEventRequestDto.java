@@ -1,6 +1,6 @@
 package com.project.EventTicket.domain.dtos;
 
-import com.project.EventTicket.domain.entities.EventStatusEnum;
+import com.project.EventTicket.domain.enums.EventStatusEnum;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;

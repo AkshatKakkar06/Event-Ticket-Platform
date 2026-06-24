@@ -1,5 +1,6 @@
 package com.project.EventTicket.domain.entities;
 
+import com.project.EventTicket.domain.enums.QrCodeStatusEnum;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -20,14 +21,13 @@ public class QrCode {
 
     @Id
     @Column(name="id", updatable = false, nullable = false)
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(name="status", nullable = false)
     @Enumerated(EnumType.STRING)
-    private QRCodeStatusEnum status;
+    private QrCodeStatusEnum status;
 
-    @Column(name="value", nullable = false)
+    @Column(name="value", columnDefinition = "TEXT", nullable = false)
     private String value;
 
     @ManyToOne(fetch = FetchType.LAZY)

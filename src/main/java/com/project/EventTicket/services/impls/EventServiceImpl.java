@@ -4,6 +4,7 @@ import com.project.EventTicket.domain.CreateEventRequest;
 import com.project.EventTicket.domain.UpdateEventRequest;
 import com.project.EventTicket.domain.UpdateTicketTypeRequest;
 import com.project.EventTicket.domain.entities.Event;
+import com.project.EventTicket.domain.enums.EventStatusEnum;
 import com.project.EventTicket.domain.entities.TicketType;
 import com.project.EventTicket.domain.entities.User;
 import com.project.EventTicket.exceptions.EventNotFoundException;
@@ -45,7 +46,7 @@ public class EventServiceImpl implements EventService {
                     TicketType ticketTypeToBeCreated = new TicketType();
                     ticketTypeToBeCreated.setName(ticketType.getName());
                     ticketTypeToBeCreated.setPrice(ticketType.getPrice());
-                    ticketTypeToBeCreated.setTotalAvailable(ticketType.getTotalAvailable());
+                    ticketTypeToBeCreated.setAvailableCount(ticketType.getAvailableCount());
                     ticketTypeToBeCreated.setDescription(ticketType.getDescription());
                     ticketTypeToBeCreated.setEvent(eventToBeCreated);
                     return ticketTypeToBeCreated;})
@@ -110,7 +111,7 @@ public class EventServiceImpl implements EventService {
                 TicketType ticketType = new TicketType();
                 ticketType.setName(updateTicketTypeRequest.getName());
                 ticketType.setPrice(updateTicketTypeRequest.getPrice());
-                ticketType.setTotalAvailable(updateTicketTypeRequest.getTotalAvailable());
+                ticketType.setAvailableCount(updateTicketTypeRequest.getAvailableCount());
                 ticketType.setDescription(updateTicketTypeRequest.getDescription());
                 ticketType.setEvent(existingEvent);
                 existingTicketTypes.add(ticketType);
@@ -120,7 +121,7 @@ public class EventServiceImpl implements EventService {
                 TicketType ticketType = existingTicketTypeIndex.get(updateTicketTypeRequest.getId());
                 ticketType.setName(updateTicketTypeRequest.getName());
                 ticketType.setPrice(updateTicketTypeRequest.getPrice());
-                ticketType.setTotalAvailable(updateTicketTypeRequest.getTotalAvailable());
+                ticketType.setAvailableCount(updateTicketTypeRequest.getAvailableCount());
                 ticketType.setDescription(updateTicketTypeRequest.getDescription());
             }
             else{
@@ -134,11 +135,22 @@ public class EventServiceImpl implements EventService {
     @Override
     @Transactional
     public void deleteEventForOrganizer(UUID organizerId, UUID eventId){
-        if(!eventRepository.existsById(eventId)){
-            throw new EventNotFoundException(String.format("Event with id '%s' not found", eventId));
-        }
-        eventRepository.deleteById(eventId);
+        getEventDetailsForOrganizer(organizerId, eventId).ifPresent(eventRepository::delete);
 
+    }
 
+    @Override
+    public Page<Event> listPublishedEvents(Pageable pageable) {
+        return eventRepository.findByStatus(EventStatusEnum.PUBLISHED, pageable);
+    }
+
+    @Override
+    public Page<Event> searchPublishedEvents(String q, Pageable pageable) {
+        return eventRepository.searchEvents(q, pageable);
+    }
+
+    @Override
+    public Optional<Event> getPublishedEventDetails(UUID eventId) {
+        return eventRepository.findByIdAndStatus(eventId, EventStatusEnum.PUBLISHED);
     }
 }

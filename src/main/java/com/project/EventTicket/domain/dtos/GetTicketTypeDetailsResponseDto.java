@@ -14,7 +14,7 @@ public class GetTicketTypeDetailsResponseDto {
     private UUID id;
     private String name;
     private Double price;
-    private Integer totalAvailable;
+    private Integer availableCount;
     private String description;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

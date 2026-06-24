@@ -19,7 +19,7 @@ public class CreateTicketTypeRequestDto {
     @PositiveOrZero(message = "Price must be zero or greater")
     private Double price;
 
-    private Integer totalAvailable;
+    private Integer availableCount;
 
     private String description;
 }

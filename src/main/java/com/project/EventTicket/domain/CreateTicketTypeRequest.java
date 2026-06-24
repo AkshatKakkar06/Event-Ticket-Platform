@@ -11,6 +11,6 @@ public class CreateTicketTypeRequest {
 
     private String name;
     private Double price;
-    private Integer totalAvailable;
+    private Integer availableCount;
     private String description;
 }

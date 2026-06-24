@@ -1,9 +1,7 @@
 package com.project.EventTicket.mappers;
 
 import com.project.EventTicket.domain.CreateEventRequest;
-import com.project.EventTicket.domain.CreateTicketTypeRequest;
 import com.project.EventTicket.domain.UpdateEventRequest;
-import com.project.EventTicket.domain.UpdateTicketTypeRequest;
 import com.project.EventTicket.domain.dtos.*;
 import com.project.EventTicket.domain.entities.Event;
 import org.mapstruct.Mapper;
@@ -18,4 +16,7 @@ public interface EventMapper {
     GetEventDetailsResponseDto toGetEventDetailsResponseDto(Event event);
     UpdateEventRequest fromUpdateEventResponseDto(UpdateEventRequestDto updateEventRequestDto);
     UpdateEventResponseDto toUpdateEventResponseDto(Event event);
+    ListPublishedEventResponseDto toListPublishedEventResponseDto(Event event);
+    GetPublishedEventDetailsResponseDto toGetPublishedEventDetailsResponseDto(Event event);
 }
+

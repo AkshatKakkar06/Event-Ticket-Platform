@@ -1,6 +1,6 @@
 package com.project.EventTicket.domain.dtos;
 
-import com.project.EventTicket.domain.entities.EventStatusEnum;
+import com.project.EventTicket.domain.enums.EventStatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

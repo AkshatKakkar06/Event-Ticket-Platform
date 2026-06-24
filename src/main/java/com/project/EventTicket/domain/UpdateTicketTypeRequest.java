@@ -14,6 +14,6 @@ public class UpdateTicketTypeRequest {
     private UUID id;
     private String name;
     private Double price;
-    private Integer totalAvailable;
+    private Integer availableCount;
     private String description;
 }

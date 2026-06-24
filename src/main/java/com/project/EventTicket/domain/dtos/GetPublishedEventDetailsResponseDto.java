@@ -1,6 +1,5 @@
 package com.project.EventTicket.domain.dtos;
 
-import com.project.EventTicket.domain.enums.EventStatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,14 +12,12 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateEventResponseDto {
+public class GetPublishedEventDetailsResponseDto {
     private UUID id;
     private String name;
     private String venue;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
-    private LocalDateTime salesStart;
-    private LocalDateTime salesEnd;
-    private EventStatusEnum status;
-    private List<CreateTicketTypeResponseDto> ticketTypes = new ArrayList<>();
+    private List<GetPublishedTicketTypeDetailsResponseDto> ticketTypes = new ArrayList<>();
+
 }

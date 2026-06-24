@@ -1,5 +1,7 @@
 package com.project.EventTicket.domain.entities;
 
+import com.project.EventTicket.domain.enums.TicketValidationMethodEnum;
+import com.project.EventTicket.domain.enums.TicketValidationStatusEnum;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
